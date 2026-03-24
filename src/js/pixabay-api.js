@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export function getImagesByQuery(query) {
+export function async getImagesByQuery(query) {
+    let page = 1;
+    let perPage = 15;
     axios.defaults.baseURL = 'https://pixabay.com';
     const searchParams = new URLSearchParams({
         key: '55116148-63b4b48da282efb6025f7a072',
@@ -8,9 +10,11 @@ export function getImagesByQuery(query) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
+        page: page,
+        per_page: perPage,
     });
 
-    return axios.get(`/api/?${searchParams}`).then(response => response.data.hits);
+    return await axios.get(`/api/?${searchParams}`).then(response => response.data.hits);
 }
  
 
