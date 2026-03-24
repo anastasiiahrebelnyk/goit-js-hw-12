@@ -1,0 +1,148 @@
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+/* Common styles */
+@import url('./reset.css');
+@import url('./base.css');
+
+.form {
+  /* margin-left: 28px;
+  margin-top: 28px; */
+margin: 36px auto 32px auto;
+
+}
+
+.form input {
+  height: 40px;
+  width: 272px;
+  color: #2e2f42;
+  padding-left: 16px;
+border-radius: 4px;
+background-color: #fff;
+}
+
+.form input::placeholder {
+  font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+      letter-spacing: 0.04em;
+      color: #808080;
+}
+
+.form input:hover {
+  border-color: #000000;
+}
+
+.form:focus-visible {
+  border-color: blue;
+}
+
+button {
+  border-radius: 8px;
+    padding: 8px 16px;
+    background-color: #4e75ff;
+    font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+        letter-spacing: 0.04em;
+        color: #fff;
+        border: none;
+}
+
+button:focus, button:hover {
+  background-color: #6c8cff;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+max-width: 1134px;
+margin: 0 auto;
+}
+
+.gallery-item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  border: 1px solid #808080;
+  display: flex;
+}
+
+.img-link {
+  
+}
+
+.img {
+  object-fit: cover;
+  height: 156px;
+}
+
+.img-descr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.title-descr {
+  font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+}
+
+.descr-text {
+  font-weight: 400;
+  line-height: 200%;
+}
+
+/* .disabled {
+  display: none;
+} */
+
+/* .active {
+  display: block;
+} */
+
+.js-loader {
+  display: none;
+}
+
+.js-loader.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: block;
+  margin: 24px auto;
+  position: relative;
+  border: 2px solid #FF3D00;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.js-loader.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  border: 2px solid #FFF;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
