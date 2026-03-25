@@ -17,6 +17,7 @@ let page = 1;
 let query;
 
 
+
 refs.formEl.addEventListener('submit', onSubmit);
 
 refs.fetchButton.addEventListener('click', onClick);
@@ -98,6 +99,13 @@ async function onClick() {
         // console.log(images);
     
         createGallery(images.hits);
+        const elem = document.querySelector('.gallery-item');
+       console.log(elem.getBoundingClientRect());
+        const height = elem.getBoundingClientRect().height;
+         window.scrollBy({
+    top: height * 2,
+    behavior: 'smooth',
+  });
         const totalPages = images.totalHits / perPage;
 
 console.log(totalPages);
