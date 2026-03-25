@@ -26,11 +26,13 @@ refs.fetchButton.addEventListener('click', onClick);
 
 async function onSubmit(e) {
     e.preventDefault();
+    hideLoadMoreButton();
     clearGallery();
     page = 1;
     query = refs.inputEl.value.trim();
     
     if (query === '') {
+        hideLoader()
         iziToast.show({
             color: 'red',
             message: 'Sorry, there are no images matching your search query. Please try again!'
@@ -44,7 +46,7 @@ async function onSubmit(e) {
         const images = await getImagesByQuery(query, page);
       
 
-        if (images.length === 0) {
+        if (images.hits.length === 0) {
             hideLoadMoreButton();
             iziToast.show({
                 color: 'red',
@@ -55,13 +57,22 @@ async function onSubmit(e) {
         }
         hideLoader();
         createGallery(images.hits);
-        const totalPages = images.totalHits / perPage;
+        showLoadMoreButton(); 
+        const totalPages = Math.ceil(images.totalHits / perPage);
         if (page > totalPages) {
+            hideLoader();
             hideLoadMoreButton();
-        }
-        showLoadMoreButton();    
+            iziToast.show({
+                color: 'red',
+                message: "We're sorry, but you've reached the end of search results.",
+            });
+        };
+           
     } catch (error) {
-        console.log(error);
+         iziToast.show({
+                color: 'red',
+                message: "ERROR!",
+            });
     
     };
 
@@ -70,7 +81,7 @@ async function onSubmit(e) {
 };
 
 async function onClick() {
-    console.log('click');
+    hideLoadMoreButton()
     page += 1;
     showLoader();
     try {
@@ -85,10 +96,11 @@ async function onClick() {
     top: height * 2,
     behavior: 'smooth',
   });
-        const totalPages = images.totalHits / perPage;
+        const totalPages = Math.ceil(images.totalHits / perPage);
 
 
         if (page > totalPages) {
+            hideLoader()
             hideLoadMoreButton();
              iziToast.show({
                 color: 'red',
@@ -97,8 +109,11 @@ async function onClick() {
         };
 
     } catch (error) {
-        console.log(error);
+        iziToast.show({
+                color: 'red',
+                message: "ERROR!",
+            });
     
     };
-
+    showLoadMoreButton();
 };
