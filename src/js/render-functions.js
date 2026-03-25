@@ -34,3 +34,13 @@ export function hideLoader() {
 };
 
 // const box = new SimpleLightbox('.img-link', { /* options */ });
+
+export function showLoadMoreButton() {
+    return refs.fetchButton.classList.remove('disabled')
+    
+};
+
+export function hideLoadMoreButton() {
+    return refs.fetchButton.classList.add('disabled')
+
+};

@@ -146,3 +146,14 @@ margin: 0 auto;
     transform: rotate(360deg);
   }
 }
+
+.fetch-button {
+ margin: 0 auto;
+ margin-top: 32px;
+ margin-bottom: 44px;
+
+}
+
+.disabled {
+  display: none;
+}
