@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export async function getImagesByQuery(query, page) {
-    // let page = 1;
     let perPage = 15;
     axios.defaults.baseURL = 'https://pixabay.com';
     const searchParams = new URLSearchParams({
@@ -16,9 +15,7 @@ export async function getImagesByQuery(query, page) {
 
     
     const response = await axios.get(`/api/?${searchParams}`);
-    console.log(response);
     
-    // .then(response => response.data.hits)
     return response.data
 }
  

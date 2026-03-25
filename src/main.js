@@ -27,9 +27,8 @@ refs.fetchButton.addEventListener('click', onClick);
 async function onSubmit(e) {
     e.preventDefault();
     clearGallery();
+    page = 1;
     query = refs.inputEl.value.trim();
-    // console.log(query);
-    
     
     if (query === '') {
         iziToast.show({
@@ -43,7 +42,7 @@ async function onSubmit(e) {
 
     try {
         const images = await getImagesByQuery(query, page);
-        // console.log(images);
+      
 
         if (images.length === 0) {
             iziToast.show({
@@ -60,25 +59,6 @@ async function onSubmit(e) {
             hideLoadMoreButton();
         }
         showLoadMoreButton();    
-        // .then(images => {
-        //     if (images.length === 0) {
-        //         iziToast.show({
-        //     color: 'red',
-        //     message: 'Sorry, there are no images matching your search query. Please try again!'
-        //         });
-        //         return
-        //     }
-        //     createGallery(response.data.hits);
-        // })
-        // .catch(error => {
-        //     iziToast.show({ message: 'Error' });
-        //     console.log(error);
-        // })
-        // .finally(() => {
-        //     hideLoader();
-            
-        //     // refs.formEl.reset();
-        // }); }    
     } catch (error) {
         console.log(error);
     
@@ -91,12 +71,10 @@ async function onSubmit(e) {
 async function onClick() {
     console.log('click');
     page += 1;
-    // const query = refs.inputEl.value.trim();
     showLoader();
     try {
         const images = await getImagesByQuery(query, page);
         hideLoader();
-        // console.log(images);
     
         createGallery(images.hits);
         const elem = document.querySelector('.gallery-item');
@@ -108,7 +86,6 @@ async function onClick() {
   });
         const totalPages = images.totalHits / perPage;
 
-console.log(totalPages);
 
         if (page > totalPages) {
             hideLoadMoreButton();
@@ -122,32 +99,5 @@ console.log(totalPages);
         console.log(error);
     
     };
-    //    const query = refs.inputEl.value.trim();
-    
-//     console.log(query);
-//     refs.fetchButton.disabled = false;
-//     page += 1;
-// //     if (page > totalPages) {
-// //         refs.fetchButton.disabled = true;
-            
-// // }
-// //     }
-
-//     await getImagesByQuery(query, page)
-//         .then(images => {
-             
-//             createGallery(images);
-//         })
-//         .catch(error => {
-//             iziToast.show({ message: 'Error' });
-//             console.log(error);
-//         })
-//         .finally(() => {
-//             hideLoader();
-//             //         if (page > 1) {
-//             // refs.fetchButton.textContent = ""
-
-//             refs.formEl.reset();
-//         });
 
 };

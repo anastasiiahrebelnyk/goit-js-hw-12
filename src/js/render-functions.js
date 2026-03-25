@@ -33,7 +33,6 @@ export function hideLoader() {
     return refs.loader.classList.remove('loader');
 };
 
-// const box = new SimpleLightbox('.img-link', { /* options */ });
 
 export function showLoadMoreButton() {
     return refs.fetchButton.classList.remove('disabled')
