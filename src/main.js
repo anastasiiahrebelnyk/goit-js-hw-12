@@ -59,7 +59,7 @@ async function onSubmit(e) {
         createGallery(images.hits);
         showLoadMoreButton(); 
         const totalPages = Math.ceil(images.totalHits / perPage);
-        if (page > totalPages) {
+        if (page >= totalPages) {
             hideLoader();
             hideLoadMoreButton();
             iziToast.show({
@@ -69,6 +69,9 @@ async function onSubmit(e) {
         };
            
     } catch (error) {
+        hideLoader();
+        hideLoadMoreButton();
+
          iziToast.show({
                 color: 'red',
                 message: "ERROR!",
@@ -95,11 +98,12 @@ async function onClick() {
          window.scrollBy({
     top: height * 2,
     behavior: 'smooth',
-  });
+         });
+         showLoadMoreButton();
         const totalPages = Math.ceil(images.totalHits / perPage);
 
 
-        if (page > totalPages) {
+        if (page >= totalPages) {
             hideLoader()
             hideLoadMoreButton();
              iziToast.show({
@@ -109,11 +113,13 @@ async function onClick() {
         };
 
     } catch (error) {
+        hideLoader();
+        hideLoadMoreButton();
         iziToast.show({
                 color: 'red',
                 message: "ERROR!",
             });
     
     };
-    showLoadMoreButton();
+   
 };
