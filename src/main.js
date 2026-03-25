@@ -45,6 +45,7 @@ async function onSubmit(e) {
       
 
         if (images.length === 0) {
+            hideLoadMoreButton();
             iziToast.show({
                 color: 'red',
                 message: 'Sorry, there are no images matching your search query. Please try again!'
